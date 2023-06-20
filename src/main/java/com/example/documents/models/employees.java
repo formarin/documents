@@ -1,4 +1,4 @@
-package com.example.documents.classes;
+package com.example.documents.models;
 
 public class employees {
     private String Full_name;

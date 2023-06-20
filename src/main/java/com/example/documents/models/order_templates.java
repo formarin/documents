@@ -1,4 +1,4 @@
-package com.example.documents.classes;
+package com.example.documents.models;
 
 
 public class order_templates {
