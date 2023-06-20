@@ -1,6 +1,5 @@
-package com.example.documents.classes;
+package com.example.documents.models;
 
-import java.util.Date;
 import java.time.LocalDate;
 
 public class order_log {
