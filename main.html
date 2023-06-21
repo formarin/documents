@@ -1,0 +1,79 @@
+<?php
+include_once("dizain.html");	
+?>
+<!--=====================Весь стиль тута!============================-->
+<link rel="stylesheet" href="style_main.css">
+<!--===================================================================-->
+
+
+
+<!--===================================================================-->
+<!--=======================Шапочка из фальги===========================-->
+<!--===================================================================-->
+ <head>
+   <title>DOKBANK</title>
+   <meta charset="utf-8">
+     <div class="header">
+<a href="main.html"><img src="img/logo.png" width="300" height="75" style="border-radius:3%;">
+  <div class="header-right">
+    <a class="menu" href="#home"><h3>Главная</h3></a>
+    <a class="menu"href="#contact"><h3>Запасная вкладка</h3></a>
+    <a class="menu" href="#about"><h3>Запасная вкладки 2</h3></a>
+  </div>
+</div>
+</head> 
+
+<!--===================================================================-->
+<!--======================Блок с Регистрацией==========================-->
+<!--===================================================================-->
+<body>
+		<center>
+			<div style="otstup">
+				<form action="ввод в дб.php" method="post"><!--Вот туда должны данные отправляться.... -->
+						<div class="container" >
+							<h1>Регистрация</h1>
+							<p>Ячейки помеченные * обязательны для ввода!</p>
+							<hr>
+							<label for="name"><b>Фамилия</b></label>
+							<input type="text" placeholder="* Введите фамилию" name="F" required>
+							
+							<label for="name" ><b>Имя </b></label>
+							<input type="text" placeholder="* Введите имя" name="I" required>
+
+							<label for="name"><b>Отчество</b></label>
+							<input type="text" placeholder="* Введите Отчество" name="O" required>
+							
+							<label for="job"><b>Должность</b>
+							  <select name="job"  style="margin: 1%;">
+								<option value="">-- Выберите должность --</option>
+								<option value="1">Технарь</option>
+								<option value="2">Программист</option>
+								<option value="3">Системный админ.</option>
+								<option value="4">Директор</option>
+							  </select>
+							 </label>
+							 <br>
+							<label for="email"><b>Email</b></label>
+							<input type="text" placeholder="* Введите Email" name="email" required>
+
+							<label for="psw"><b>Пароль</b></label>
+							<input type="password" placeholder="* Введите Пароль" name="psw" required>
+
+							<label for="psw-repeat"><b>Повторите Пароль</b></label>
+							<input type="password" placeholder="Повторите Пароль" name="psw-repeat" required>
+							<hr>
+
+							<p>Создавая учетную запись, вы соглашаетесь с <a href="#">Обработкой ваших персональных данных</a>.</p>
+							<button type="submit" class="registerbtn">Регистрация</button>
+							
+							<p style="text-align: center;">У вас уже есть аккаунт? <a href="#">Авторизация</a>.</p>
+					  </div>
+
+				</form>
+			</div>
+	</center>
+</body>
+<!--=========================================================-->
+<!--=========================================================-->
+<!--=========================================================-->
+</html>
