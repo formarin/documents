@@ -9,11 +9,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Table
 @Data
-public class ordersType {
+
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idTypeOrder;
-    private String nameOrder;
-    //private shablon???
-    //private Logicname???
+    private Long idEmployees;
+    private String jobTitle;
+    private String subdivision;
+    private String fullName;
+    private String login;
+    private String password;
+    //private enum ???
 }
