@@ -11,9 +11,9 @@ import lombok.NoArgsConstructor;
 @Data
 public class OrderType {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idTypeOrder;
-    private String nameOrder;
+    private String typeOrder;
     private String samples;
 
     //private Logicname???

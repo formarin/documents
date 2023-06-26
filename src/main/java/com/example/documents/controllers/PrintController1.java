@@ -14,14 +14,12 @@ public class PrintController1 {
         model.addAttribute("fio", fio);
         return "Dok/employment"; // Вернуть имя представления "panel" для отображения страницы employment.html
     }
-
     @PostMapping("/holiday")
     public String processPrint2(@RequestParam("fio") String fio,
                                Model model) {
         model.addAttribute("fio", fio);
         return "Dok/holiday"; // Вернуть имя представления "panel" для отображения страницы holiday.html
     }
-
     @PostMapping("/dismissal")
     public String processPrint3(@RequestParam("fio") String fio,
                                 Model model) {

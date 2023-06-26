@@ -13,14 +13,21 @@ import java.time.LocalDate;
 
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer numbOrder;
     private Long idEmployees;
-    private String typeOrder;
+    @ManyToOne
+    @JoinColumn(name = "typeOrder", referencedColumnName = "typeOrder")
+    private OrderType orderType;
     private LocalDate dateEmployment;
     private LocalDate dateDismissal;
     private LocalDate dateStart;
     private LocalDate dateEnd;
-    private String status;
+    private LocalDate dateSigning;
+    @Enumerated(EnumType.STRING)
+    private StatusEnum status;
+    @ManyToOne
+    @JoinColumn(name = "idEmployees")
+    private User user;
 }
