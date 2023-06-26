@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<head>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<link rel="shortcut icon" href="img/logo_min" type="image/x-icon">
+
+   <title>DOKBANK</title>
+   <meta charset="utf-8">
+</head> 
+<body>
+     <div class="header">
+<a href="http://localhost:8080/"><img src="img/logo.png" width="300" height="75" style="border-radius:3%;">
+  <div class="header-right">
+    <a class="menu" href="main"><h3>Главная</h3></a>
+    <a class="menu"href="main"><h3>Запасная вкладка</h3></a>
+    <a class="menu" href="main"><h3>Запасная вкладки 2</h3></a>
+  </div>
+</div>
+		<center>
+			<div style="otstup">
+				<form action="/login" method="post"><!--Вот туда должны данные отправляться.... -->
+						<div class="container" >
+							<h1>Авторизация</h1>
+							<p>* Внимания логин и пароль можно получить у системного администратора!</p>
+							<hr>
+							<label for="login"><b>Логин</b></label>
+							<input type="text" placeholder="* Введите Логин" name="login" required>
+
+							<label for="psw"><b>Пароль</b></label>
+							<input type="password" placeholder="* Введите Пароль" name="psw" required>
+
+							
+							<hr>
+							<button type="submit" class="registerbtn">Вход</button>
+							
+							<p style="text-align: center;">У вас нет аккаунт? <a href="#">Отправить запрос на создание администранору</a>.</p>
+					  </div>
+				</form>
+			</div>
+		</center>
+</body>

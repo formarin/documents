@@ -18,7 +18,6 @@ public class Order {
     private Integer numbOrder;
     private Long idEmployees;
     private String typeOrder;
-    private String fullName;
     private LocalDate dateEmployment;
     private LocalDate dateDismissal;
     private LocalDate dateStart;

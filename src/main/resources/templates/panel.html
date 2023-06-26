@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <style>
+    /* Стили для затемнения */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    /* Стили для окошка */
+    .popup {
+      position: relative;
+    }
+
+    /* Стили для кнопки "Закрыть" */
+    .close-button {
+      position: fixed;
+      font-size: 20px;
+	  left: 50%;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+<div class="overlay">
+        <form id="myForm" action="fio" method="post">
+            <!-- Вот туда должны данные отправляться.... -->
+            <div class="container" style="width: 100%;background: rgba(255, 255, 255,0.9);border-radius: 10px 10px 10px 10px;">
+                <span class="close-button">&#10005;</span>
+                <h1>Создание документа</h1>
+                <p>Строчки помеченные * обязательны!</p>
+                <hr>
+                <label for="fio"><b>ФИО</b></label>
+                <input type="text" placeholder="* Введите ФИО" name="fio" required style="background: #DCDCDC;">
+				<label for="selectOption">Выберите тип документа:</label>
+				<select id="selectOption" onchange="handleChange(this)">
+                <option value="option1">Отпуск</option>
+                <option value="option2">Трудоустройство</option>
+                <option value="option3">Увольнение</option>
+				</select>
+				<div id="additionalFields"></div> <!-- Контейнер для дополнительных полей -->
+			
+				<hr>
+                <button type="submit" class="registerbtn">Создать</button>
+				<button type="submit" class="registerbtn">Печать (без сохранения)</button>
+                <p style="text-align: center;">У вас ошибка? <a href="#">сообщить администратору</a>.</p>
+		</div>
+        </form>
+
+</div>
+
+<div class="header">
+ <a href="http://localhost:8080/"><img src="img/logo.png" width="300" height="75" style="border-radius: 3%;"></a>
+    <div class="header-right">
+        <a class="menu" href="main"><h3>Главная</h3></a>
+        <a class="menu" href="main"><h3>Запасная вкладка</h3></a>
+        <a class="menu" href="main"><h3>Запасная вкладки 2</h3></a>
+    </div>
+</div>
+
+<center>
+    <div style="otstup">
+        <div class="container">
+            <h1>Панель управления</h1>
+            <button id="openButton" class="but">+</button>
+            <p>Введенный логин: <strong th:text="${login}"></strong></p>
+            <p>Введенный пароль: <strong th:text="${password}"></strong></p>
+            <hr>
+            
+        </div>
+    </div>
+</center>
+<script>
+    // Обработчик события клика на кнопку "Открыть окошко"
+    document.getElementById("openButton").addEventListener("click", function() {
+      document.querySelector(".overlay").style.display = "flex";
+    });
+
+    // Обработчик события клика на кнопку "Закрыть"
+    document.querySelector(".close-button").addEventListener("click", function() {
+      document.querySelector(".overlay").style.display = "none";
+    });
+
+    // Функция для обработки изменений в выпадающем списке
+    function handleChange(select) {
+      var selectedOption = select.value;
+      var additionalFieldsContainer = document.getElementById("additionalFields");
+	  var formElement = document.getElementById("myForm");
+
+
+      // Очищаем контейнер с дополнительными полями
+      additionalFieldsContainer.innerHTML = "";
+
+      // Пример добавления или удаления элементов перед кнопкой в зависимости от выбранной опции
+      if (selectedOption === "option1") {
+	  
+	  //Здесь пишем страницу куда отправлять данные
+	formElement.action = "/holiday";
+	  
+	  
+        // Добавляем элементы перед кнопкой
+        var additionalInput = document.createElement("input");
+        additionalInput.setAttribute("type", "text");
+		additionalInput.setAttribute("style", "background: #DCDCDC");
+        additionalInput.setAttribute("placeholder", "Дата начала отпуска");
+		var additionalInput4 = document.createElement("input");
+        additionalInput4.setAttribute("type", "text");
+		additionalInput4.setAttribute("style", "background: #DCDCDC");
+        additionalInput4.setAttribute("placeholder", "Дата конца отпуска");
+        additionalFieldsContainer.appendChild(additionalInput4);
+		}
+	else if (selectedOption === "option2") {
+	 //Здесь пишем страницу куда отправлять данные
+	 formElement.action = "/employment";
+		 
+        var additionalInput2 = document.createElement("input");
+        additionalInput2.setAttribute("type", "text");
+		additionalInput2.setAttribute("style", "background: #DCDCDC;");
+        additionalInput2.setAttribute("placeholder", "Дата принятия на работу");
+        additionalFieldsContainer.appendChild(additionalInput2);
+      } 
+	  else if (selectedOption === "option3") { 
+	
+	  
+	  	
+        var additionalInput3 = document.createElement("input");
+        additionalInput3.setAttribute("type", "text");
+		additionalInput3.setAttribute("style", "background: #DCDCDC;");
+        additionalInput3.setAttribute("placeholder", "Дата принятия на работу");
+        additionalFieldsContainer.appendChild(additionalInput3);
+		
+		 var additionalInput5 = document.createElement("input");
+        additionalInput5.setAttribute("type", "text");
+		additionalInput5.setAttribute("style", "background: #DCDCDC;");
+        additionalInput5.setAttribute("placeholder", "Дата уволнение");
+        additionalFieldsContainer.appendChild(additionalInput5);
+		formElement.action = "/dismissal";
+      }
+	  
+	  else {
+    formElement.action = "/404"; // по умолчанию стоит отпуск поэтому
+	}
+    }
+  </script>
+</body>
+</html>

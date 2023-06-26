@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css"/>
+	http://localhost:8080/
+   <title>DOKBANK</title>
+   <meta charset="utf-8">
+     <div class="header">
+<a href="main.html"><img src="img/logo.png" width="300" height="75" style="border-radius:3%;">
+  <div class="header-right">
+    <a class="menu" href="#home"><h3>Главная</h3></a>
+    <a class="menu"href="#contact"><h3>Запасная вкладка</h3></a>
+    <a class="menu" href="#about"><h3>Запасная вкладки 2</h3></a>
+  </div>
+</div>
+</head> 
+<body>
+		<center>
+			<div style="otstup">
+				<form action="ввод в дб.php" method="post"><!--Вот туда должны данные отправляться.... -->
+						<div class="container" >
+							<h1>Авторизация</h1>
+							<p>* Внимания логин и пароль можно получить у системного администратора!</p>
+							<hr>
+							<label for="login"><b>ФИО</b></label>
+							<input type="text" placeholder="* Введите Логин" name="login" required>
+							<button type="submit" class="registerbtn">Сохранить</button>
+							<button type="submit2" class="registerbtn">Печать (без сохранения)</button>
+							<p style="text-align: center;">У вас ошибка?<a href="#">Отправить запрос администранору</a>.</p>
+					  <div id="additionalFields"></div>
+					  </div>
+				</form>
+			</div>
+		</center>
+</body>
