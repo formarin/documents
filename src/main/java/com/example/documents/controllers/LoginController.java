@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class LoginController {
 
-    @PostMapping("/login")
+   /* @PostMapping("/login")
     public String processLogin(@RequestParam("login") String login,
                                @RequestParam("psw") String password,
                                Model model) {
@@ -17,6 +17,6 @@ public class LoginController {
         model.addAttribute("password", password);
 
         return "panel"; // Вернул на страницу panel.html
-    }
+    }*/
 }
 

@@ -7,13 +7,14 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "orderType")
+@Table(name = "order_types")
 @Data
 public class OrderType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idTypeOrder;
-    private String typeOrder;
+    private Long id;
+    @Column(unique = true)
+    private String type;
     private String samples;
 
     //private Logicname???

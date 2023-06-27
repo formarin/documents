@@ -11,5 +11,5 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     Optional<Order> findByDateEmployment(LocalDate dateEmployment);
     Optional<Order> findByDateDismissal(LocalDate dateDismissal);
     Optional<Order> findByDateStart(LocalDate dateStart);
-    Optional<Order> findByDateEnd(LocalDate dateEnd);
+//    Optional<Order> findByDateEnd(LocalDate dateEnd);
 }

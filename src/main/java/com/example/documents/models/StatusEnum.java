@@ -2,7 +2,8 @@ package com.example.documents.models;
 
 public enum StatusEnum {
     APPROVED("Одобрено"),
-    PROCESSED("Проведено");
+    PROCESSED("Проведено"),
+    DECLINED("Отклонено");
 
     private final String value;
 

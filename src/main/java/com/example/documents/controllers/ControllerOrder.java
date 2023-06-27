@@ -15,7 +15,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/orders")
 public class ControllerOrder {
-    @Autowired
+   /* @Autowired
     private OrderRepository orderRepository;
     @GetMapping("/employment")
     public Optional<Order> getOrderByDateEmployment(@RequestParam("dateEmployment") LocalDate dateEmployment) {
@@ -25,12 +25,12 @@ public class ControllerOrder {
     public Optional<Order> getOrderByDateDismissal(@RequestParam("dateDismissal") LocalDate dateDismissal) {
         return orderRepository.findByDateDismissal(dateDismissal);
     }
-    @GetMapping("/")
+    @GetMapping("/start")
     public Optional<Order> getOrderByDateStart(@RequestParam("dateStart") LocalDate dateStart) {
         return orderRepository.findByDateStart(dateStart);
     }
     @GetMapping("/")
     public Optional<Order> getOrderByDateEnd(@RequestParam("dateEnd") LocalDate dateEnd) {
         return orderRepository.findByDateEnd(dateEnd);
-    }
+    }*/
 }

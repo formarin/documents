@@ -5,10 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ControllerEnum {
-    @GetMapping("/panel???????")
+  /*  @GetMapping("/panel???????")
     public String myPage(Model model) {
         model.addAttribute("status", StatusEnum.APPROVED);
         model.addAttribute("status", StatusEnum.PROCESSED);
         return "panel";
-    }
+    }*/
 }

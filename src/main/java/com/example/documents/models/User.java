@@ -10,18 +10,19 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table
+@Table(name = "users")
 @Data
 
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idEmployees;
+    private Long id;
     private String jobTitle;
     private String subdivision;
     private String fullName;
-    private String login;
+    @Column(unique = true)
+    private String email;
     private String password;
-    @OneToMany(mappedBy = "user")
-    private List<Order> orders;
+    /*@OneToMany(mappedBy = "user")
+    private List<Order> orders;*/
 }
