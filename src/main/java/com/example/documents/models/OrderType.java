@@ -4,17 +4,19 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-@Entity
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 @Table(name = "order_types")
-@Data
 public class OrderType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(unique = true)
     private String type;
+
     private String samples;
 
     //private Logicname???
