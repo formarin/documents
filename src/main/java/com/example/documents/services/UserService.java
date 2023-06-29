@@ -2,6 +2,7 @@ package com.example.documents.services;
 
 import com.example.documents.exceptions.UserAlreadyExistsException;
 import com.example.documents.models.User;
+import com.example.documents.models.modelsDTO.UserDto;
 import com.example.documents.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,12 +28,14 @@ public class UserService {
         return userRepository.findById(id).get();
     }
 
-    public Long addUser(User user) {
-        Optional<User> optionalUser = userRepository.findByEmail(user.getEmail());
-        if(optionalUser.isPresent()) {
+    public Long addUser(UserDto userDto) {
+        Optional<User> optionalUser = userRepository.findByEmail(userDto.email());
+
+        if (optionalUser.isPresent()) {
             throw new UserAlreadyExistsException("This email is already taken", HttpStatus.BAD_REQUEST);
         }
-        return userRepository.save(user).getId();
+
+        return userRepository.save(mapToUser(userDto)).getId();
     }
 
     public Long updateUser(User user) {
@@ -41,5 +44,16 @@ public class UserService {
 
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
+    }
+
+    private User mapToUser(UserDto userDto) {
+        var user = new User();
+        user.setJobTitle(userDto.jobTitle());
+        user.setSubdivision(user.getSubdivision());
+        user.setFullName(userDto.fullName());
+        user.setEmail(userDto.email());
+        user.setPassword(userDto.password());
+
+        return user;
     }
 }

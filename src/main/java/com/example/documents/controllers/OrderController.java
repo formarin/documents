@@ -1,6 +1,8 @@
 package com.example.documents.controllers;
 
 import com.example.documents.models.Order;
+import com.example.documents.models.modelsDTO.OrderDto;
+import com.example.documents.models.modelsDTO.OrderGetDto;
 import com.example.documents.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,17 +30,22 @@ public class OrderController {
 
     @GetMapping
     public ResponseEntity<List<Order>> getAllOrders() {
-        return new ResponseEntity<>(orderService.getAllOrders(), HttpStatus.OK);
+        return new ResponseEntity<>(orderService.getAllSignedOrders(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Order> getOrder(@PathVariable Long id) {
+    public ResponseEntity<OrderGetDto> getOrder(@PathVariable Long id) {
         return new ResponseEntity<>(orderService.getOrder(id), HttpStatus.OK);
     }
 
+    @GetMapping("/user{id}")
+    public ResponseEntity<List<Order>> getOrderByUserId(@PathVariable Long id) {
+        return new ResponseEntity<>(orderService.getOrdersByUserId(id), HttpStatus.OK);
+    }
+
     @PostMapping
-    public ResponseEntity<Long> addOrder(@RequestBody Order order) {
-        return new ResponseEntity<>(orderService.addOrder(order), HttpStatus.OK);
+    public ResponseEntity<Long> addOrder(@RequestBody OrderDto orderDto) {
+        return new ResponseEntity<>(orderService.addOrder(orderDto), HttpStatus.OK);
     }
 
     @PutMapping
