@@ -1,8 +1,8 @@
 package com.example.documents.controllers;
 
 import com.example.documents.models.Order;
-import com.example.documents.models.modelsDTO.OrderDto;
-import com.example.documents.models.modelsDTO.OrderGetDto;
+import com.example.documents.modelsDTO.OrderDto;
+import com.example.documents.modelsDTO.OrderDtoGet;
 import com.example.documents.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,7 +34,7 @@ public class OrderController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<OrderGetDto> getOrder(@PathVariable Long id) {
+    public ResponseEntity<OrderDtoGet> getOrder(@PathVariable Long id) {
         return new ResponseEntity<>(orderService.getOrder(id), HttpStatus.OK);
     }
 

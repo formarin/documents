@@ -2,8 +2,8 @@ package com.example.documents.services;
 
 import com.example.documents.models.Order;
 import com.example.documents.models.StatusEnum;
-import com.example.documents.models.modelsDTO.OrderDto;
-import com.example.documents.models.modelsDTO.OrderGetDto;
+import com.example.documents.modelsDTO.OrderDto;
+import com.example.documents.modelsDTO.OrderDtoGet;
 import com.example.documents.repositories.OrderRepository;
 import com.example.documents.repositories.OrderTypeRepository;
 import com.example.documents.repositories.UserRepository;
@@ -36,7 +36,7 @@ public class OrderService {
         return orderRepository.findByUserId(id);
     }
 
-    public OrderGetDto getOrder(Long id) {
+    public OrderDtoGet getOrder(Long id) {
         Order order = orderRepository.findById(id).get();
 
         return mapToOrderGetDto(order);
@@ -71,8 +71,8 @@ public class OrderService {
         return order;
     }
 
-    private OrderGetDto mapToOrderGetDto(Order order) {
-        return new OrderGetDto(
+    private OrderDtoGet mapToOrderGetDto(Order order) {
+        return new OrderDtoGet(
                 order.getNumbOrder(),
                 order.getDateEmployment(),
                 order.getDateDismissal(),

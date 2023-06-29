@@ -1,7 +1,7 @@
 package com.example.documents.controllers;
 
 import com.example.documents.models.User;
-import com.example.documents.models.modelsDTO.UserDto;
+import com.example.documents.modelsDTO.UserDtoPost;
 import com.example.documents.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,7 +38,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<Long> addUser(@RequestBody UserDto userDto) {
+    public ResponseEntity<Long> addUser(@RequestBody UserDtoPost userDto) {
         return new ResponseEntity<>(userService.addUser(userDto), HttpStatus.OK);
     }
 

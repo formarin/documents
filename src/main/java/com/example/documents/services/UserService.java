@@ -2,7 +2,7 @@ package com.example.documents.services;
 
 import com.example.documents.exceptions.UserAlreadyExistsException;
 import com.example.documents.models.User;
-import com.example.documents.models.modelsDTO.UserDto;
+import com.example.documents.modelsDTO.UserDtoPost;
 import com.example.documents.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,7 +28,7 @@ public class UserService {
         return userRepository.findById(id).get();
     }
 
-    public Long addUser(UserDto userDto) {
+    public Long addUser(UserDtoPost userDto) {
         Optional<User> optionalUser = userRepository.findByEmail(userDto.email());
 
         if (optionalUser.isPresent()) {
@@ -46,10 +46,10 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    private User mapToUser(UserDto userDto) {
+    private User mapToUser(UserDtoPost userDto) {
         var user = new User();
         user.setJobTitle(userDto.jobTitle());
-        user.setSubdivision(user.getSubdivision());
+        user.setSubdivision(userDto.subdivision());
         user.setFullName(userDto.fullName());
         user.setEmail(userDto.email());
         user.setPassword(userDto.password());

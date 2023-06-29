@@ -1,6 +1,6 @@
-package com.example.documents.models.modelsDTO;
+package com.example.documents.modelsDTO;
 
-public record UserDto(
+public record UserDtoPost(
         String jobTitle,
         String subdivision,
         String fullName,

@@ -1,15 +1,18 @@
-package com.example.documents.models.modelsDTO;
+package com.example.documents.modelsDTO;
+
+import com.example.documents.models.StatusEnum;
 
 import java.time.LocalDate;
 
-public record OrderGetDto(
+public record OrderDto(
         Integer numbOrder,
         LocalDate dateEmployment,
         LocalDate dateDismissal,
         LocalDate dateStart,
         LocalDate dateEnd,
         LocalDate dateSigning,
-        String orderType,
-        String userFullName
+        StatusEnum status,
+        Long orderTypeId,
+        Long userId
 ) {
 }
