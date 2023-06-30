@@ -3,7 +3,7 @@ package com.example.documents.services;
 import com.example.documents.models.Order;
 import com.example.documents.models.StatusEnum;
 import com.example.documents.modelsDTO.OrderDto;
-import com.example.documents.modelsDTO.OrderDtoGet;
+import com.example.documents.modelsDTO.OrderDtoForJournal;
 import com.example.documents.repositories.OrderRepository;
 import com.example.documents.repositories.OrderTypeRepository;
 import com.example.documents.repositories.UserRepository;
@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class OrderService {
@@ -28,15 +29,18 @@ public class OrderService {
         this.userRepository = userRepository;
     }
 
-    public List<Order> getAllSignedOrders() {
-        return orderRepository.findByStatus(StatusEnum.PROCESSED);
+    public List<OrderDtoForJournal> getAllSignedOrders() {
+        List<Order> orders = orderRepository.findByStatus(StatusEnum.PROCESSED);
+        return orders.stream()
+                .map(this::mapToOrderGetDto)
+                .collect(Collectors.toList());
     }
 
     public List<Order> getOrdersByUserId(Long id) {
         return orderRepository.findByUserId(id);
     }
 
-    public OrderDtoGet getOrder(Long id) {
+    public OrderDtoForJournal getOrder(Long id) {
         Order order = orderRepository.findById(id).get();
 
         return mapToOrderGetDto(order);
@@ -71,16 +75,19 @@ public class OrderService {
         return order;
     }
 
-    private OrderDtoGet mapToOrderGetDto(Order order) {
-        return new OrderDtoGet(
+    private OrderDtoForJournal mapToOrderGetDto(Order order) {
+        String orderType = order.getOrderType() != null ? order.getOrderType().getType() : "";
+        String userFullName = order.getUser() != null ? order.getUser().getFullName() : "";
+
+        return new OrderDtoForJournal(
                 order.getNumbOrder(),
                 order.getDateEmployment(),
                 order.getDateDismissal(),
                 order.getDateStart(),
                 order.getDateEnd(),
                 order.getDateSigning(),
-                order.getOrderType().getType(),
-                order.getUser().getFullName()
+                orderType,
+                userFullName
         );
     }
 }

@@ -2,7 +2,7 @@ package com.example.documents.modelsDTO;
 
 import java.time.LocalDate;
 
-public record OrderDtoGet(
+public record OrderDtoForJournal(
         Integer numbOrder,
         LocalDate dateEmployment,
         LocalDate dateDismissal,

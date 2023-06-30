@@ -2,11 +2,12 @@ package com.example.documents.controllers;
 
 import com.example.documents.models.Order;
 import com.example.documents.modelsDTO.OrderDto;
-import com.example.documents.modelsDTO.OrderDtoGet;
+import com.example.documents.modelsDTO.OrderDtoForJournal;
 import com.example.documents.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -29,12 +31,13 @@ public class OrderController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Order>> getAllOrders() {
-        return new ResponseEntity<>(orderService.getAllSignedOrders(), HttpStatus.OK);
+    public ModelAndView getAllOrders(Model model) {
+        model.addAttribute("orderList", orderService.getAllSignedOrders());
+        return new ModelAndView("orderLog");
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<OrderDtoGet> getOrder(@PathVariable Long id) {
+    public ResponseEntity<OrderDtoForJournal> getOrder(@PathVariable Long id) {
         return new ResponseEntity<>(orderService.getOrder(id), HttpStatus.OK);
     }
 
