@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -30,7 +31,7 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @GetMapping
+    @GetMapping("/log")
     public ModelAndView getAllOrders(Model model) {
         model.addAttribute("orderList", orderService.getAllSignedOrders());
         return new ModelAndView("orderLog");
@@ -46,9 +47,15 @@ public class OrderController {
         return new ResponseEntity<>(orderService.getOrdersByUserId(id), HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<Long> addOrder(@RequestBody OrderDto orderDto) {
-        return new ResponseEntity<>(orderService.addOrder(orderDto), HttpStatus.OK);
+    @GetMapping("/new")
+    public ModelAndView showOrderForm(@ModelAttribute() OrderDto orderDto) {
+        return new ModelAndView("orderForm");
+    }
+
+    @PostMapping("/save")
+    public ModelAndView addOrder(@ModelAttribute OrderDto orderDto) {
+        orderService.addOrder(orderDto);
+        return new ModelAndView("redirect:log");
     }
 
     @PutMapping

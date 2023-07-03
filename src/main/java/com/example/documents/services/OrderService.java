@@ -10,6 +10,7 @@ import com.example.documents.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,6 +34,7 @@ public class OrderService {
         List<Order> orders = orderRepository.findByStatus(StatusEnum.PROCESSED);
         return orders.stream()
                 .map(this::mapToOrderGetDto)
+                .sorted(Comparator.comparing(OrderDtoForJournal::numbOrder))
                 .collect(Collectors.toList());
     }
 
@@ -67,7 +69,7 @@ public class OrderService {
         order.setDateDismissal(orderDto.dateDismissal());
         order.setDateStart(orderDto.dateStart());
         order.setDateEnd(orderDto.dateEnd());
-        //order.setDateSigning(orderDto.dateSigning());
+        order.setStatus(StatusEnum.PROCESSED);
 
         order.setOrderType(orderTypeRepository.findById(orderDto.orderTypeId()).get());
         order.setUser(userRepository.findById(orderDto.userId()).get());

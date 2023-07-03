@@ -10,8 +10,6 @@ public record OrderDto(
         LocalDate dateDismissal,
         LocalDate dateStart,
         LocalDate dateEnd,
-        LocalDate dateSigning,
-        StatusEnum status,
         Long orderTypeId,
         Long userId
 ) {

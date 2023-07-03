@@ -1,6 +1,7 @@
 package com.example.documents.models;
 
 public enum StatusEnum {
+    CREATED("Создан"),
     APPROVED("Одобрено"),
     PROCESSED("Проведено"),
     DECLINED("Отклонено");
