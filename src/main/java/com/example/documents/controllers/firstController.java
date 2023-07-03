@@ -8,8 +8,8 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 @RequestMapping("docs")
 public class firstController {
-   /* @GetMapping("/")
+ @GetMapping("/")
     public ModelAndView getAllStudents() {
         return new ModelAndView("index");
-    }*/
+    }
 }

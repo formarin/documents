@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+  <style>
+    /* внешние границы таблицы серого цвета толщиной 1px */
+    table {
+      border: 1px solid grey;
+      width: 100%;
+    }
+
+    /* границы ячеек первого ряда таблицы */
+    th {
+      border: 1px solid grey;
+    }
+
+    /* границы ячеек тела таблицы */
+    td {
+      border: 1px solid grey;
+    }
+
+    @media print {
+      .header {
+        display: block;
+      }
+
+      .custom-btn {
+        display: none;
+      }
+
+      .btn-13 {
+        display: none;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header">
+
+
+    <a href="http://localhost:8080/"><img src="img/logo.png" width="300px" height="75px"></a>
+    <div class="magazineButton">
+
+      <button class="custom-btn btn-13" onclick="goBack()"> <img src="img/back.png"> </button>
+
+    </div>
+    <div class="backButton">
+
+      <button class="custom-btn btn-13 " onclick=" printButton()">Печать</button>
+
+
+    </div>
+
+
+
+  </div>
+  <center id="magazine">
+    <div class="container">
+      <h1>Журнал</h1>
+      <!-- Пример структуры таблицы -->
+      <table>
+        <thead>
+          <tr>
+            <th>№ п/п</th>
+            <th>Дата приказа</th>
+            <th>Содержание приказа</th>
+            <th>ФИО</th>
+            <th>Date Employment</th>
+            <th>Date Dismissal</th>
+            <th>Date Start</th>
+            <th>Date End</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="order:${orderList}">
+            <td th:text="${order.numbOrder}"></td>
+            <td th:text="${order.dateSigning != null ? order.dateSigning : ''}"></td>
+            <td th:text="${order.orderType}"></td>
+            <td th:text="${order.userFullName}"></td>
+            <td th:text="${order.dateEmployment != null ? order.dateEmployment : ''}"></td>
+            <td th:text="${order.dateDismissal != null ? order.dateDismissal : ''}"></td>
+            <td th:text="${order.dateStart != null ? order.dateStart : ''}"></td>
+            <td th:text="${order.dateEnd != null ? order.dateEnd : ''}"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </center>
+</body>
+<script>
+  function goBack() {
+    window.history.back();
+  }
+</script>
+<script>
+  function printButton() {
+    var prtContent = document.getElementById("magazine");
+    var WinPrint = window.open(' background: linear-gradient(#ffffff, #55f486) fixed;');
+    WinPrint.document.write('<html><head><style>body{ background: linear-gradient(#ffffff, #55f486) fixed;}table {  border: 1px solid grey; width: 100%; } table, th, td {border: 1px solid grey; }</style></head><body>');
+    WinPrint.document.write(prtContent.innerHTML);
+    WinPrint.document.write('</body></html>');
+    WinPrint.document.close();
+    WinPrint.focus();
+    WinPrint.print();
+    WinPrint.close();
+  }
+</script>
+
+</html>

@@ -17,7 +17,8 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     Optional<Order> findByDateStart(LocalDate dateStart);
 
-    //    Optional<Order> findByDateEnd(LocalDate dateEnd);
+    Optional<Order> findByDateEnd(LocalDate dateEnd);
+    Optional<Order> findByDateCreation(LocalDate dateCreation);
     List<Order> findByStatus(StatusEnum status);
     List<Order> findByUserId(Long id);
 }
