@@ -2,6 +2,7 @@ package com.example.documents.services;
 
 import com.example.documents.models.Order;
 import com.example.documents.models.StatusEnum;
+import com.example.documents.modelsDTO.OrderCardDto;
 import com.example.documents.modelsDTO.OrderDto;
 import com.example.documents.modelsDTO.OrderDtoForJournal;
 import com.example.documents.repositories.OrderRepository;
@@ -38,8 +39,11 @@ public class OrderService {
                 .collect(Collectors.toList());
     }
 
-    public List<Order> getOrdersByUserId(Long id) {
-        return orderRepository.findByUserId(id);
+    public List<OrderCardDto> getOrdersByUserId(Long id) {
+        List<Order> orders = orderRepository.findByUserId(id);
+        return orders.stream()
+                .map(this::mapToOrderCardDto)
+                .collect(Collectors.toList());
     }
 
     public OrderDtoForJournal getOrder(Long id) {
@@ -90,6 +94,21 @@ public class OrderService {
                 order.getDateSigning(),
                 orderType,
                 userFullName
+        );
+    }
+
+    private OrderCardDto mapToOrderCardDto(Order order){
+        return new OrderCardDto(
+                order.getId(),
+                order.getCreationDate(),
+                order.getDateEmployment(),
+                order.getDateDismissal(),
+                order.getDateStart(),
+                order.getDateEnd(),
+                order.getStatus(),
+                order.getOrderType().getType(),
+                order.getUser().getId(),
+                order.getUser().getFullName()
         );
     }
 }

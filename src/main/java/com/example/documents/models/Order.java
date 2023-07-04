@@ -29,6 +29,8 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer numbOrder;
 
+    private LocalDate creationDate;
+
     @Nullable
     private LocalDate dateEmployment;
 

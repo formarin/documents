@@ -1,6 +1,7 @@
 package com.example.documents.controllers;
 
 import com.example.documents.models.Order;
+import com.example.documents.modelsDTO.OrderCardDto;
 import com.example.documents.modelsDTO.OrderDto;
 import com.example.documents.modelsDTO.OrderDtoForJournal;
 import com.example.documents.services.OrderService;
@@ -43,7 +44,7 @@ public class OrderController {
     }
 
     @GetMapping("/user{id}")
-    public ResponseEntity<List<Order>> getOrderByUserId(@PathVariable Long id) {
+    public ResponseEntity<List<OrderCardDto>> getOrdersByUserId(@PathVariable Long id) {
         return new ResponseEntity<>(orderService.getOrdersByUserId(id), HttpStatus.OK);
     }
 
