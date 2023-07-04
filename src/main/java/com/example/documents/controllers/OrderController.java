@@ -44,8 +44,9 @@ public class OrderController {
     }
 
     @GetMapping("/user{id}")
-    public ResponseEntity<List<OrderCardDto>> getOrdersByUserId(@PathVariable Long id) {
-        return new ResponseEntity<>(orderService.getOrdersByUserId(id), HttpStatus.OK);
+    public ModelAndView getOrdersByUserId(@PathVariable Long id, Model model) {
+        model.addAttribute("cardList",orderService.getOrdersByUserId(id));
+        return new ModelAndView("orderCards");
     }
 
     @PostMapping
