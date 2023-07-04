@@ -44,9 +44,6 @@ public class Order {
     private LocalDate dateEnd;
 
     @Nullable
-    private LocalDate dateCreation;
-
-    @Nullable
     private LocalDate dateSigning;
 
     @Enumerated(EnumType.STRING)

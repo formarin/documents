@@ -8,7 +8,6 @@ public record OrderDtoForJournal(
         LocalDate dateDismissal,
         LocalDate dateStart,
         LocalDate dateEnd,
-        LocalDate dateCreation,
         LocalDate dateSigning,
         String orderType,
         String userFullName

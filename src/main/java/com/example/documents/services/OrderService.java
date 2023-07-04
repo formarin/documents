@@ -72,7 +72,6 @@ public class OrderService {
         order.setDateStart(orderDto.dateStart());
         order.setDateEnd(orderDto.dateEnd());
         order.setDateSigning(orderDto.dateSigning());
-        order.setDateCreation(orderDto.dateCreation());
 
         order.setOrderType(orderTypeRepository.findById(orderDto.orderTypeId()).get());
         order.setUser(userRepository.findById(orderDto.userId()).get());
@@ -91,7 +90,6 @@ public class OrderService {
                 order.getDateStart(),
                 order.getDateEnd(),
                 order.getDateSigning(),
-                order.getDateCreation(),
                 orderType,
                 userFullName
         );
