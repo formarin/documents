@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Cards</title>
+</head>
+<body>
+<div th:each="card : ${cardList}">
+    <h2>Order Details</h2>
+    <p>ID: <span th:text="${card.id}"></span></p>
+    <p>Creation Date: <span th:text="${card.creationDate}"></span></p>
+    <p>Date of Employment: <span th:text="${card.dateEmployment}"></span></p>
+    <p>Date of Dismissal: <span th:text="${card.dateDismissal}"></span></p>
+    <p>Date Start: <span th:text="${card.dateStart}"></span></p>
+    <p>Date End: <span th:text="${card.dateEnd}"></span></p>
+    <p>Status: <span th:text="${card.status}"></span></p>
+    <p>Order Type: <span th:text="${card.orderType}"></span></p>
+    <p>User ID: <span th:text="${card.userId}"></span></p>
+    <p>User Full Name: <span th:text="${card.userFullName}"></span></p>
+    <hr>
+</div>
+</body>
+</html>

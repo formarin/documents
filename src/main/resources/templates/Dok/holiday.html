@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Отпуск</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #5f6368;
+    }
+
+    .container-fon {
+      width: 210mm;        /* Ширина контейнера с учетом отступов (10mm по каждой стороне) */
+      height: 280mm;      /* Высота контейнера с учетом отступов (10mm по каждой стороне) */
+      margin: 10mm auto;       /* Отступы 10mm сверху и снизу, автоматическое выравнивание по горизонтали */
+      background-color: #ffffff;
+    }
+
+    .container {
+      width: 190mm;      /* Ширина контейнера с учетом отступов (10mm по каждой стороне) */
+      height: 277mm;      /* Высота контейнера с учетом отступов (10mm по каждой стороне) */
+      margin: 10mm auto;      /* Отступы 10mm сверху и снизу, автоматическое выравнивание по горизонтали */
+      background-color: #ffffff;
+    }
+
+    .header {
+      background-color: #292a2d;
+      padding: 10px;
+      text-align: right;
+    }
+
+    .print-button {
+      background-color: #eaeaea;
+      padding: 10px 20px;
+      border-radius: 4px;
+      border: none;
+      font-weight: bold;
+      text-decoration: none;
+      color: #333333;
+      transition: background-color 0.3s ease;
+    }
+
+    .print-button:hover {
+      background-color: #4ed3ff;
+    }
+
+    h1 {
+      margin: 0cm;
+      margin-bottom: .0001pt;
+      text-align: right;
+      page-break-after: avoid;
+      font-size: 14.0pt;
+      font-family: "Times New Roman", serif;
+      font-weight: normal;
+    }
+
+    h2 {
+      margin: 0cm;
+      margin-bottom: .0001pt;
+      text-align: center;
+      page-break-after: avoid;
+      font-size: 14.0pt;
+      font-family: "Times New Roman", serif;
+      font-weight: normal;
+    }
+
+    @media print {
+      .header {
+        display: block;
+      }
+
+      .print-button {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<header>
+  <div class="header">
+    <button class="print-button" onclick="window.print()">Печать</button>
+  </div>
+</header>
+
+<body>
+  <div class="container-fon">
+    <div class="container">
+
+      <p class=MsoNormal style='text-align:justify'><span style='font-size:14.0pt'>&nbsp;</span></p>
+      <p style='text-align:right;line-height:115%'>
+        <span style='font-size:11.0pt;line-height:115%'>Директору ООО "</span>
+        <span style='font-size:11.0pt;line-height:115%'>DOCBANK"</span>
+      </p>
+
+      <p style='text-align:right;line-height:115%'>
+        <span style='font-size:11.0pt;line-height:115%'>Иванову Иван Ивановичу</span>
+      </p>
+      <p style='text-align:right;line-height:115%'>
+        <span style='font-size:11.0pt;line-height:115%'>от <strong style='font-weight: 200;' th:text="${fullName}"></strong></span>
+      </p>
+      <p style='text-align:right'>
+        <span style='font-size:11.0pt'>&nbsp;</span>
+      </p>
+      <p style='text-align:right'>
+        <span style='font-size:11.0pt'>&nbsp;</span>
+      </p>
+      <h2>
+        <span style='font-size:11.0pt; text-decoration:none'>
+          <span>Заявление
+
+          </span>
+
+        </span>
+      </h2>
+      <p style='text-align:justify'><span style='font-size:11.0pt'>&nbsp;</span></p>
+      <p style='text-align:justify'>
+        <span style='font-size:11.0pt'>Прошу предоставить мне ежегодный оплачиваемый отпуск с <strong style='font-weight: 200;' th:text="${formatteddateStart}"></strong> года по
+          <strong style='font-weight: 200;' th:text="${formatteddateEnd}"></strong> года.</span>
+      </p>
+      <p style='text-align:justify'>
+        <span style='font-size:11.0pt'>&nbsp;</span>
+      </p>
+      <p style='text-align:justify'>
+        <span style='font-size:11.0pt'>&nbsp;</span>
+      </p>
+      <p style='text-align:right'>
+
+        <span style='font-size:11.0pt'>Дата <strong style='font-weight: 200;' th:text="${formattedDate}"></strong> </span>
+      </p>
+      <p style='text-align:right'>
+        <span style='font-size:11.0pt'> Подпись (<strong style='font-weight: 200;' th:text="${fullName}"></strong>) </span>
+    </div>
+  </div>
+  </div>
+</body>
+
+</html>

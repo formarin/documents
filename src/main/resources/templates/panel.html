@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <link rel="stylesheet" type="text/css" href="css/styleselect.css" />
+  <style>
+    .container h1 {
+      /* добавил новый шрифт на тест "Список приказов"*/
+      font-family: "Appetite-Italic";
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <div class="overlay">
+    <form id="myForm" action="orders" method="post" enctype="application/json">
+
+      <!-- Вот туда должны данные отправляться.... -->
+      <div class="window" style="width: 50%;background: rgba(255, 255, 255,1);border-radius: 10px 10px 10px 10px;">
+        <span class="close-button">&#10005;</span>
+        <h1>Создание документа</h1>
+        <p>Строчки помеченные * обязательны!</p>
+        <hr>
+        <label for="selectOption">Выберите тип документа:</label>
+        <select class="select-css" id="selectOption" onchange="handleChange(this)">
+          <option value="null">----</option>
+          <option value="employment">Трудоустройство</option>
+          <option value="holiday">Отпуск</option>
+          <option value="dismissal">Увольнение</option>
+        </select>
+        <br>
+        <div id="additionalFields"></div> <!-- Контейнер для дополнительных полей -->
+        <label for="date">Дата создания: </label><input type="hidden" id="userId" name="userId" value="1"></input>
+        <input type="date" id="dateCreation" name="dateCreation" style="outline: none; border: none; background-color: transparent; font-size: 15px;color: black;" readonly>
+        <hr>
+        <button type="submit" class="registerbtn" id="myButton" disabled>Создать</button>
+
+        <!-- <button type="submit" class="registerbtn" id="myButton1" disabled>Печать (без сохранения)</button> -->
+        <p style="text-align: center;">У вас ошибка? <a href="#">сообщить администратору</a>.</p>
+      </div>
+      <script>
+        // Получение текущей даты
+        var currentDate = new Date();
+        var formattedDate = currentDate.toISOString().slice(0, 10); // Форматирование даты в формат, поддерживаемый полем ввода (гггг-мм-дд)
+        document.getElementById("dateCreation").value = formattedDate; // Установка значения в поле ввода
+      </script>
+    </form>
+  </div>
+
+
+  <div class="header">
+
+
+    <a href="http://localhost:8080/"><img src="img/logo.png" width="300px" height="75px" style="border-radius: 3%;"></a>
+
+    <div class="containerButtonHeader">
+
+
+      <button class="custom-btn btn-13" id="openButton">Создать</button>
+
+      <a href="http://localhost:8080"><button class="custom-btn btn-13">Выйти</button></a>
+
+    </div>
+    <div class="magazineButton">
+      <form action="orders" method="get"><button class="custom-btn btn-13">Журнал</button></form>
+    </div>
+
+  </div>
+  <center>
+    <div>
+      <div class="container">
+        <h1>Список приказов</h1>
+        <hr>
+        <h2>
+          <p>Приветствую тебя, <strong th:text="${fullName}"></strong></p>
+        </h2>
+        <p><i>* Теперь ты можешь создать документ или просмотреть отправленные на проверку документы</i></p>
+        <hr>
+
+
+      </div>
+    </div>
+  </center>
+
+  <script>
+    // Кнопка "Открыть окно"
+    document.getElementById("openButton").addEventListener("click", function () {
+      document.querySelector(".overlay").style.display = "flex";
+    });
+
+    // Кнопка "Закрыть"
+    document.querySelector(".close-button").addEventListener("click", function () {
+      document.querySelector(".overlay").style.display = "none";
+    });
+
+    // Выпадающий список
+    function handleChange(select) {
+      var selectedOption = select.value;
+      var additionalFieldsContainer = document.getElementById("additionalFields");
+      var formElement = document.getElementById("myForm");
+
+      // Очищаем контейнер с дополнительными полями
+      additionalFieldsContainer.innerHTML = "";
+
+      // Выборы заявлений
+      //Ничего
+      if (selectedOption === "null") {
+        const myButton = document.getElementById("myButton");
+        // const myButton1 = document.getElementById("myButton1");
+
+        // Блокировка кнопок
+        myButton.disabled = true;
+        // myButton1.disabled = true;
+
+      }
+
+      //Трудоустройство
+      else if (selectedOption === "employment") {
+        const myButton = document.getElementById("myButton");
+        // const myButton1 = document.getElementById("myButton1");
+
+        // Разблокировка кнопки
+        myButton.disabled = false;
+        // myButton1.disabled = false;
+
+        // Создание элемента <label> для текста перед выпадающим списком
+        var label2 = document.createElement("label");
+        label2.textContent = "Выберите дату: ";
+
+        // Добавление элемента <label> к контейнеру
+        additionalFieldsContainer.appendChild(label2);
+
+        //отправка даных в базу id выбраного  докумен
+        var orderTypeId = document.createElement("input");
+        orderTypeId.type = "hidden";
+        orderTypeId.name = "orderTypeId";
+        orderTypeId.value = "1";
+        additionalFieldsContainer.appendChild(orderTypeId);
+
+        //Поле выбора даты
+        var additionalInput1 = document.createElement("input");
+        additionalInput1.setAttribute("type", "date");
+        additionalInput1.setAttribute("name", "dateEmployment");
+        additionalFieldsContainer.appendChild(additionalInput1);
+        additionalInput1.setAttribute("type", "date");
+        additionalInput1.style.marginBottom = "20px"
+        additionalInput1.setAttribute("class", "select-css");
+
+
+
+        // Определение текущей даты
+        var currentDate = new Date();
+        var formattedDate = currentDate.toISOString().slice(0, 10); // Преобразование в формат YYYY-MM-DD
+        additionalInput1.value = formattedDate; // Установка значения текущей даты
+      }
+
+      //Отпуск
+      else if (selectedOption === "holiday") {
+
+
+
+        const myButton = document.getElementById("myButton");
+        // const myButton1 = document.getElementById("myButton1");
+        // Разблокировка кнопки
+        myButton.disabled = false;
+        // myButton1.disabled = false;
+
+
+        var orderTypeId = document.createElement("input");
+        orderTypeId.type = "hidden";
+        orderTypeId.name = "orderTypeId";
+        orderTypeId.value = "2";
+        additionalFieldsContainer.appendChild(orderTypeId);
+
+
+        //Выбор даты с какого 
+        var label1 = document.createElement("label");
+        label1.textContent = "Выберите дату с: ";
+
+        additionalFieldsContainer.appendChild(label1);
+
+        var additionalInput1 = document.createElement("input");
+        additionalInput1.setAttribute("type", "date");
+        additionalInput1.setAttribute("name", "dateStart");
+        additionalFieldsContainer.appendChild(additionalInput1);
+        additionalInput1.setAttribute("type", "date");
+        additionalInput1.style.marginBottom = "20px"
+        additionalInput1.setAttribute("class", "select-css");
+        // Выбор даты до какого
+        var label2 = document.createElement("label");
+        label2.textContent = "Выберите дату до: ";
+
+        additionalFieldsContainer.appendChild(label2);
+
+        var additionalInput2 = document.createElement("input");
+        additionalInput2.setAttribute("type", "date");
+        additionalInput2.setAttribute("name", "dateEnd");
+        additionalFieldsContainer.appendChild(additionalInput2);
+        additionalInput2.setAttribute("type", "date");
+        additionalInput2.style.marginBottom = "20px"
+        additionalInput2.setAttribute("class", "select-css");
+        // Определение текущей даты
+        var currentDate = new Date();
+        var formattedDate = currentDate.toISOString().slice(0, 10); // Преобразование в формат YYYY-MM-DD
+
+        additionalInput1.value = formattedDate;
+        additionalInput2.value = formattedDate;// Установка значения текущей даты
+        //Здесь пишем страницу куда отправлять данные
+      }
+
+
+      //Увольнение
+      else if (selectedOption === "dismissal") {
+        const myButton = document.getElementById("myButton");
+        // const myButton1 = document.getElementById("myButton1");
+
+        // Разблокировка кнопки
+        myButton.disabled = false;
+        // myButton1.disabled = false;
+
+
+        var orderTypeId = document.createElement("input");
+        orderTypeId.type = "hidden";
+        orderTypeId.name = "orderTypeId";
+        orderTypeId.value = "3";
+        additionalFieldsContainer.appendChild(orderTypeId);
+
+
+     
+        var label2 = document.createElement("label");
+        label2.textContent = "Выберите дату: ";
+
+        // Добавление элемента <label> к контейнеру
+        additionalFieldsContainer.appendChild(label2);
+        var additionalInput2 = document.createElement("input");
+        additionalInput2.setAttribute("type", "date");
+        additionalInput2.setAttribute("name", "dateDismissal");
+        additionalFieldsContainer.appendChild(additionalInput2);
+        additionalInput2.setAttribute("type", "date");
+        additionalInput2.style.marginBottom = "20px"
+        additionalInput2.setAttribute("class", "select-css");
+
+        // Определение текущей даты
+        var currentDate = new Date();
+        var formattedDate = currentDate.toISOString().slice(0, 10); // Преобразование в формат YYYY-MM-DD
+        additionalInput2.value = formattedDate; // Установка значения текущей даты
+      }
+
+      else {
+        formElement.action = "/404"; // по умолчанию стоит отпуск поэтому
+      }
+    }
+
+  </script>
+
+  <!-- Дата -->
+ 
+
+
+  <!-- Уведомление о создании документа -->
+  <script>
+    document.querySelector('form').addEventListener('submit', function (e) {
+      e.preventDefault(); // Предотвращаем отправку формы по умолчанию
+      var form = e.target;
+      var formData = new FormData(form);
+
+      fetch(form.action, {
+        method: form.method,
+        body: formData
+      })
+        .then(function (response) {
+          if (response.ok) {
+            return response.text(); // Получаем текст ответа
+          } else {
+            throw new Error('Ошибка при добавлении данных');
+          }
+        })
+        .then(function (message) {
+          // Отображаем уведомление
+          alert(message);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    });
+  </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+.select-css {
+  display: block;
+  font-size: 14px;
+  font-weight: 300;
+  color: #444;
+  padding: .10em 1.4em .5em .8em;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  border: 1px solid #aaa;
+  border-radius: .5em;
+  padding: 10px;
+}
+
+.select-css::-ms-expand {
+  display: none;
+}
+
+.select-css:hover {
+  border-color: #888;
+}
+
+.select-css:focus {
+  border-color: #aaa;
+  box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
+  color: #222;
+  outline: none;
+}
+
+.select-css option {
+  font-weight: normal;
+}
+
+.card {
+  background: #FFFFFF;
+  border: 1px solid #dedede;
+  border-radius: 15px;
+  box-sizing: border-box;
+  display: block;
+  height: 300px;
+  width: 40%;
+  display: inline-block;
+  margin-bottom: 34px;
+  overflow: hidden;
+  padding: 20px 24px 16px;
+  text-align: left;
+  position: relative;
+  text-decoration: none;
+  transition: box-shadow .3s ease-out;
+}
+
+.card:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Затемнение панели при наведении */
+}
+
+.card::before {
+  content: "";
+  /* Пустой контент для псевдоэлемента */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Затемнение панели */
+  opacity: 0;
+  /* Изначально прозрачный */
+  transition: opacity 0.3s ease;
+  /* Плавное изменение прозрачности */
+}
+
+.card:hover::before {
+  opacity: 1;
+  /* Отображение затемнения при наведении */
+}
+
+.card::after {
+  content: "";
+  /* Пустой контент для псевдоэлемента */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* Центрирование позиции */
+  background-image: url('/gif/lupa.png');
+  /* Путь к вашей картинке */
+  background-size: cover;
+  width: 24px;
+  height: 24px;
+  display: none;
+  /* По умолчанию картинка скрыта */
+}
+
+.card:hover::after {
+  display: block;
+  /* Отображение картинки при наведении */
+}
+
+.card:hover hr {
+  border-color: rgba(255, 255, 255, 1);
+  /* Цвет разделителя при наведении */
+}
+
+.infocard {
+  display: table;
+  background-position: 0;
+  background-repeat: no-repeat;
+  color: #878B90;
+  font-size: 14px;
+  letter-spacing: -.3px;
+  line-height: 16px;
+  margin-bottom: 12px;
+  padding-left: 5px;
+  position: adsolute;
+}
+
+.cardheader {
+  color: #2c3136;
+  font-family: SBSansInterface, OpenSans, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 26px;
+  margin-bottom: 0;
+  margin-top: 10px;
+}

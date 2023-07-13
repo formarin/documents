@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order List</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        h1{
+        text-align: center;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        body {
+        margin:0px;
+        padding:0px;
+        }
+
+        div {
+        width: 1000px;
+        margin: 0px auto;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h1>Журнал приказов</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>№ п/п</th>
+            <th>Дата приказа</th>
+            <th>Содержание приказа</th>
+            <th>ФИО</th>
+            <th>Date Employment</th>
+            <th>Date Dismissal</th>
+            <th>Date Start</th>
+            <th>Date End</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="order : ${orderList}">
+            <td th:text="${order.numbOrder}"></td>
+            <td th:text="${order.dateSigning != null ? order.dateSigning : ''}"></td>
+            <td th:text="${order.orderType}"></td>
+            <td th:text="${order.userFullName}"></td>
+            <td th:text="${order.dateEmployment != null ? order.dateEmployment : ''}"></td>
+            <td th:text="${order.dateDismissal != null ? order.dateDismissal : ''}"></td>
+            <td th:text="${order.dateStart != null ? order.dateStart : ''}"></td>
+            <td th:text="${order.dateEnd != null ? order.dateEnd : ''}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
